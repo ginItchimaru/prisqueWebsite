@@ -1,0 +1,224 @@
+.hero {
+  display: flex;
+  flex-direction: row; /* Default: Horizontal layout for larger screens */
+  /* Ensure that the items are centered horizontally by default */
+  justify-content: flex-start;
+}
+
+/* Left row for the image */
+.hero-img-row {
+  flex: 2;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Right row for the text */
+.hero-content-row {
+  flex: 3;
+  display: flex;
+  /* gap: 1rem; */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Hero image styling */
+.hero-img {
+  justify-content: flex-start;
+  border: 3px solid var(--clr-soft);
+  border-radius: 15px;
+  width: 20rem;
+  height: 20rem;
+}
+
+/* Text styling */
+.hero-subtitle {
+  color: var(--clr-base);
+  font-size: var(--size-base);
+  /* line-height: 0.8; */
+}
+
+.hero-title {
+  white-space: nowrap;
+  display: inline-flex;
+  color: var(--clr-soft);
+  font-size: var(--size-4xl);
+  /* line-height: 0.8; */
+  margin-top: -0.4em;
+}
+
+.hero-description {
+  max-width: 60ch;
+  font-size: var(--size-sml);
+  color: var(--clr-light);
+  /* margin-left: 1em; */
+}
+
+.hero-description-tag {
+  font-size: var(--size-xs);
+}
+
+.hero-btn {
+  font-size: var(--size-xs);
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {  
+  .hero {
+    flex-direction: column; /* Stack the image and text vertically */
+    align-items: center; /* Center everything */
+    gap: 2rem;
+    margin-top: 4rem; /* Adjust top margin for mobile */
+  }
+
+  .hero-img-row,
+  .hero-content-row {
+    width: 100%; /* Ensure both rows take up the full width on mobile */
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+  }
+
+  .hero-content-row {
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .hero-img {
+    width: 12rem; /* Adjust image size for mobile */
+    height: 12rem; /* Adjust image size for mobile */
+  }
+
+  .hero-title {
+    font-size: var(--size-3xl); /* Adjust title size for mobile */
+  }
+
+  .hero-subtitle {
+    font-size: var(--size-lg); /* Adjust subtitle size for mobile */
+  }
+
+  .hero-description {
+    font-size: var(--size-base); /* Adjust description size for mobile */
+  }
+
+  .hero-btn-wrapper {
+    margin-top: 1rem;
+  }
+
+  .hero-btn {
+    font-size: var(--size-base);
+  }
+}
+
+/* Larger screens (Laptop/PC layout) */
+@media (min-width: 768px) {
+  .hero {
+    margin-top: 5rem;
+    gap: 1rem;
+    flex-direction: row; /* Layout will be horizontal on larger screens */
+    justify-content: flex-start;
+  }
+
+  .hero-img-row {
+    order: 0; /* Keeps the image first (on the left) */
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .hero-content-row {
+    order: 1; /* Keeps the text second (on the right) */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hero-img {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .hero-title {
+    font-size: var(--size-4xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--size-lg);
+  }
+
+  .hero-description {
+    font-size: var(--size-base);
+  }
+
+  .hero-btn-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  .hero-btn {
+    font-size: var(--size-base);
+  }
+
+}
+
+/* Further adjustments for larger screen sizes (desktop, etc.) */
+@media (min-width: 1024px) {
+  .hero {
+    gap: 2rem; /* Adjust gap for larger screens */
+    margin-top: 8rem;
+  }
+
+  .hero-content-row {
+    gap: 1rem;
+  }
+
+  .hero-img {
+    width: 24rem;
+    height: 24rem;
+  }
+
+  .hero-title {
+    font-size: var(--size-5xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--size-2xl);
+  }
+
+  .hero-description {
+    font-size: var(--size-lg);
+    margin-top: 1em;
+  }
+
+  .hero-btn-wrapper {
+    margin-top: 1rem;
+  }
+
+  .hero-btn {
+    font-size: var(--size-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero {
+    gap: 4rem;
+    margin-top: 12rem;
+  }
+  
+  .hero-subtitle {
+    font-size: var(--size-3xl);
+  }
+  
+  .hero-description {
+    font-size: var(--size-xl);
+  }
+
+  .hero-btn-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  .hero-btn {
+    font-size: var(--size-xl);
+  }
+}

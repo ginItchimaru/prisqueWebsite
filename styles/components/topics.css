@@ -1,0 +1,218 @@
+.topics {
+  width: 100%;
+}
+
+.topic {
+  border-radius: 9px;
+}
+
+.bluetenzart {
+  background-color: rgb(217, 119, 6, 0.8);
+}
+
+.bluetenzart .topic-content {
+
+}
+
+.heilsphaere {
+  background-color: rgb(154, 52, 18, 0.8);
+}
+
+.wertvollessen {
+  background-color: rgb(217, 119, 6, 0.8);
+}
+
+.topic-img-wrapper {
+
+}
+
+.topic-img {
+  width: 100%;
+  border-radius: 9px;
+  box-shadow: 0px 0px 25px var(--clr-light-shadow);
+  border: 8px solid var(--clr-dark);
+  opacity: 0.8;
+}
+
+.topic-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* justify-content: center; */
+}
+
+.topic-title {
+  color: var(--clr-light);
+}
+
+.topic-description {
+  color: var(--clr-light);
+  max-width: 60ch;
+}
+
+
+/* xs */
+@media (max-width: 639px) {
+  .topics {
+    margin-top: 12rem;
+  }
+
+  .topic {
+    margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .topic-content {
+    order: 2; /* Content will be at the top */
+    margin: 1rem;
+  }
+
+  .topic-img-wrapper {
+    padding: 1rem;
+    order: 1; /* Image will be at the bottom */
+  }
+
+  .topic-title {
+    font-size: var(--size-2xl);
+    margin-bottom: 1rem;
+  }
+
+  .topic-description {
+    font-size: var(--size-sm);
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+
+  .topic {
+    margin: 3rem 1.5rem;
+    position: relative;
+  }
+
+  .topic-content {
+    position: absolute;
+    z-index: 1;
+    padding: 2rem;
+    gap: 1rem;
+    top: 50%;
+    left: 50%;
+  }
+
+  .topic-img-wrapper {
+    padding: 1rem;
+  }
+
+  .topic-title {
+    color: var(--clr-dark);
+    font-size: var(--size-3xl);
+  }
+
+  .topic-description {
+    color: var(--clr-dark);
+    font-size: var(--size-sm);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .topic-content {
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+}
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+@media (min-width: 1024px) {
+  .topics {
+    margin-top: 16rem;
+  }
+
+  .topic {
+    margin: 4rem 2rem;
+    position: relative;
+  }
+
+  .topic-content {
+    position: absolute;
+    padding: 2rem;
+    gap: 2rem;
+    top: 0;
+    left: 0;
+  }
+
+  .topic-title {
+    font-size: var(--size-3xl);
+  }
+
+  .topic-description {
+    font-size: var(--size-base);
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .topics {
+    margin-top: 25rem;
+  }
+
+  .topic {
+    display: flex;
+    padding: 2rem 0;
+    margin: 0 2rem 4rem;
+  }
+
+  .bluetenzart {
+    justify-content: flex-end;
+  }
+
+  .heilsphaere {
+    justify-content: flex-start;
+  }
+
+  .wertvollessen {
+    justify-content: flex-end;
+  }
+
+  .topic-content {
+    position: relative;
+    gap: 2.5rem;
+    z-index: 0;
+  }
+
+  .bluetenzart .topic-img-wrapper {
+    margin-right: 2rem;
+  }
+
+  .heilsphaere .topic-img-wrapper {
+    margin-left: 2rem;
+  }
+
+  .wertvollessen .topic-img-wrapper {
+    margin-right: 2rem;
+  }
+
+  .topic-img {
+    width: 75rem;
+  }
+
+  .topic-title {
+    font-size: var(--size-4xl);
+    color: var(--clr-light);
+  }
+
+  .topic-description {
+    font-size: var(--size-lg);
+    color: var(--clr-light);
+    padding: 0 2rem;
+  }
+}
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

@@ -1,0 +1,131 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+  z-index: 9999;
+}
+
+.header-menu {
+  display: none;
+}
+
+.header-bars {
+  color: var(--clr-light);
+  width: var(--size-2xl);
+  height: var(--size-2xl);
+  display: block;
+}
+
+.socials {
+  position: absolute;
+  left: -1em;
+  top: 2.2em;
+  list-style: none;
+  align-items: center;
+}
+
+.github-icon {
+  background-color: var(--clr-deep);
+  height: var(--size-2xl); /* Adjust size as needed */
+  width: var(--size-2xl);  /* Adjust size as needed */
+  border-radius: 50%;
+  display: flex; /* Use flex for centering */
+  overflow: hidden; /* Hide overflow */
+}
+
+.github-svg {
+  width: 100%;
+  display: block;
+}
+
+.github-icon:hover .tooltip {
+  opacity: 0.7;
+}
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+@media (min-width: 768px) {
+  .header-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    gap: 2em;
+  }
+
+  .header-link {
+    font-size: var(--size-xs);
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--clr-deep);
+    letter-spacing: -0.05em;
+    transition: color 0.3s;
+  }
+
+  .header-link:hover {
+    color: var(--clr-deep400);
+  }
+
+  .header-line {
+    border: 1px solid var(--clr-deep);
+    padding-top: 1.5em;
+  }
+
+  .header-sun {
+    display: block;
+    color: var(--clr-deep);
+    width: var(--size-base);
+    height: var(--size-base);
+  }
+
+  .header-resume {
+    font-size: var(--size-xs);
+  }
+
+  .header-bars {
+    display: none;
+  }
+
+  .socials {
+    top: 2em;
+  }
+} 
+
+/* lg */
+@media (min-width: 1024px) {
+  .header-link {
+    font-size: var(--size-sm);
+  }
+
+  .header-sun {
+    width: var(--size-xl);
+    height: var(--size-xl);
+  }
+
+  .header-resume {
+    font-size: var(--size-sm);
+  }
+
+  .socials {
+    top: 1.5em;
+  }
+
+  .github-icon {
+    height: var(--size-3xl);
+    width: var(--size-3xl);
+  }
+} 
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

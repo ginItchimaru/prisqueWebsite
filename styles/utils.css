@@ -1,0 +1,169 @@
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
+
+
+/* js */
+.loading {
+  filter: blur(40px) grayscale(100%);
+}
+
+.loaded {
+  filter: blur(0) grayscale(0);
+  transition: 0.7s  ease-in-out;
+}
+
+/* not in use */
+.no-scroll {
+  overflow-y: hidden;
+}
+
+/* html */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.section {
+  margin-top: 5rem;
+}
+
+
+.btn {
+  /* font-size: 16px; */
+  font-weight: 700;
+  text-decoration: none;
+  background-color:  rgba(154, 52, 18, 0.5);
+  color: var(--clr-light);
+  
+  padding: 0.5rem 1rem;
+  
+  border-radius: 1rem;
+  
+  border: 3px solid var(--clr-vivid);
+  
+  /* box-shadow: 0 1px 3px 0 rgb(187 247 208 / 0.5),
+  0 1px 2px -1px rgb(187 247 208 / 0.5); */
+  
+  transition: background-color 0.15s,
+  color 0.15s,
+  box-shadow 0.15;
+}
+
+.btn:hover {
+  background-color: var(--clr-vivid);
+  color: var(--clr-dark);
+  box-shadow: none;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: var(--clr-green800);
+  color: var(--clr-light);
+  font-size: var(--size-xs);
+  padding: 1px 4px;
+  border-radius: 2px;
+  bottom: -2.5em;
+  left: 46%;
+  opacity: 0;
+  transition: opacity 0.15;
+  pointer-events: none;
+  white-space: nowrap;  
+}
+
+/* .tooltip {
+  position: absolute;
+  background-color: var(--clr-green800);
+  color: var(--clr-light);
+  font-size: var(--size-xs);
+  padding: 1px 4px;
+  border-radius: 2px;
+  bottom: -1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  white-space: nowrap;
+} */
+
+
+.hr {
+  border-color: var(--clr-base);
+  margin: 1rem 0;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .container {
+    max-width: 475px;
+  }
+
+  .hr {
+    margin: 1.5rem 0;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  } 
+}
+
+/* md */
+@media (min-width: 768px) {
+  .container {
+    max-width: 786px;
+  } 
+}
+
+/* lg */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+
+  .section {
+    margin-top: 10rem;
+  }
+
+  .hr {
+    margin: 2rem 0;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* 2xl */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
