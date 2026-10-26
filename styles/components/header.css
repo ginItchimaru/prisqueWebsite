@@ -27,8 +27,9 @@
   align-items: center;
 }
 
-.github-icon {
+.instagram-icon {
   background-color: var(--clr-deep);
+  color: var(--clr-dark);
   height: var(--size-2xl); /* Adjust size as needed */
   width: var(--size-2xl);  /* Adjust size as needed */
   border-radius: 50%;
@@ -36,12 +37,24 @@
   overflow: hidden; /* Hide overflow */
 }
 
-.github-svg {
+.instagram-svg {
   width: 100%;
   display: block;
 }
 
-.github-icon:hover .tooltip {
+/* anchor the tooltip to the icon's <li> (the icon itself clips overflow) */
+.socials li {
+  position: relative;
+}
+
+.instagram-icon .tooltip {
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background-color: var(--clr-deep);
+}
+
+.instagram-icon:hover .tooltip {
   opacity: 0.7;
 }
 
@@ -118,7 +131,7 @@
     top: 1.5em;
   }
 
-  .github-icon {
+  .instagram-icon {
     height: var(--size-3xl);
     width: var(--size-3xl);
   }

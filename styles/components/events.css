@@ -1,0 +1,412 @@
+/*
+  Events: vertical timeline rendered by src/utils/events.js.
+  Mobile/tablet: line on the left, cards to the right.
+  lg+: line in the center, cards alternate left/right.
+*/
+
+.events {
+  --marker: 3.5rem;
+  --gap: 1rem;
+  margin-top: 12rem;
+}
+
+/* Heading */
+.events-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.events-title {
+  font-size: clamp(var(--size-3xl), 2.2rem + 1.5vw, var(--size-5xl));
+  line-height: 1.1;
+  color: var(--clr-soft);
+}
+
+.events-divider {
+  width: 4rem;
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+  border: none;
+  border-top: 3px solid var(--clr-vivid);
+  border-radius: 3px;
+}
+
+/* Empty / loading / error message */
+.events-status {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: clamp(var(--size-base), 0.95rem + 0.3vw, var(--size-lg));
+  color: var(--clr-light);
+  border: 1px dashed rgba(251, 191, 36, 0.35);
+  border-radius: 15px;
+}
+
+/* Link to the flyer section, below the timeline */
+.events-more {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.events-flyer-btn {
+  font-size: clamp(var(--size-sm), 0.85rem + 0.3vw, var(--size-lg));
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.timeline:empty {
+  display: none;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--marker) / 2 - 1.5px);
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--clr-vivid),
+    var(--clr-base),
+    var(--clr-soft)
+  );
+  mask-image: linear-gradient(to bottom, #000 85%, transparent);
+  opacity: 0.7;
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--marker) 1fr;
+  column-gap: var(--gap);
+  align-items: start;
+}
+
+/* Date bubble on the line */
+.timeline-marker {
+  position: relative;
+  z-index: 1;
+  width: var(--marker);
+  height: var(--marker);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid var(--clr-soft);
+  background-color: var(--clr-dark);
+  box-shadow: 0 0 0 6px var(--clr-dark);
+  color: var(--clr-soft);
+}
+
+.timeline-day {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.timeline-month {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--clr-base);
+}
+
+/* Card */
+.timeline-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border-radius: 15px;
+  background-color: rgba(154, 52, 18, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.18);
+}
+
+/* connector from card to the line */
+.timeline-card::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--marker) / 2 - 1px);
+  right: 100%;
+  width: var(--gap);
+  height: 2px;
+  background-color: var(--clr-soft);
+  opacity: 0.5;
+}
+
+.timeline-badge {
+  padding: 0.15rem 0.65rem;
+  border: 1px solid var(--clr-vivid);
+  border-radius: 1rem;
+  font-size: var(--size-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-vivid);
+}
+
+.timeline-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: var(--size-sm);
+  font-weight: 500;
+  color: var(--clr-base);
+}
+
+.timeline-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  color: var(--clr-light);
+  opacity: 0.85;
+}
+
+/* map pin, drawn in the text color */
+.timeline-location::before {
+  content: '';
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.timeline-title {
+  font-size: clamp(var(--size-xl), 1.1rem + 0.8vw, var(--size-3xl));
+  line-height: 1.2;
+  color: var(--clr-soft);
+}
+
+.timeline-description {
+  max-width: 60ch;
+  font-size: clamp(var(--size-base), 0.95rem + 0.2vw, var(--size-lg));
+  line-height: 1.7;
+  color: var(--clr-light);
+  /* keep line breaks typed in the sheet cell */
+  white-space: pre-line;
+}
+
+.timeline-link {
+  margin-top: 0.5rem;
+  font-size: var(--size-sm);
+}
+
+/* amber is too faint on the light background */
+.light-mode .timeline-title,
+.light-mode .timeline-day {
+  color: var(--clr-deep);
+}
+
+/* Year separator */
+.timeline-year {
+  position: relative;
+  z-index: 1;
+  width: var(--marker);
+  padding: 0.35rem 0;
+  text-align: center;
+  font-size: var(--size-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--clr-vivid);
+  background-color: var(--clr-dark);
+}
+
+/* Highlight the next upcoming event */
+.is-next .timeline-marker {
+  border-color: var(--clr-vivid);
+}
+
+.is-next .timeline-marker::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--clr-vivid);
+  animation: timeline-pulse 2.4s ease-out infinite;
+}
+
+.is-next .timeline-card {
+  border-color: rgba(190, 24, 93, 0.45);
+  box-shadow: 0 0 25px rgba(190, 24, 93, 0.15);
+}
+
+@keyframes timeline-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Scroll reveal (class added by JS, skipped for reduced motion) */
+.timeline--animate .timeline-item {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.timeline--animate .timeline-item.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-next .timeline-marker::after {
+    animation: none;
+  }
+}
+
+/* Floating start/end buttons, only for long timelines (see events.js).
+   Hidden buttons keep their slot, so each one always sits in the same spot. */
+.events-jump {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* empty slots must not block clicks on the page behind */
+  pointer-events: none;
+}
+
+.events-jump[hidden] {
+  display: none;
+}
+
+.events-jump-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  background-color: rgba(154, 52, 18, 0.35);
+  backdrop-filter: blur(6px);
+  color: var(--clr-soft);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s,
+    background-color 0.15s;
+}
+
+.events-jump-btn.is-shown {
+  opacity: 0.6;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.events-jump-btn.is-shown:hover,
+.events-jump-btn.is-shown:focus-visible {
+  opacity: 1;
+  background-color: rgba(154, 52, 18, 0.6);
+}
+
+.events-jump-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* md: tablet */
+@media (min-width: 768px) {
+  .events {
+    --marker: 4rem;
+    --gap: 1.5rem;
+  }
+
+  .timeline-day {
+    font-size: var(--size-xl);
+  }
+
+  .timeline-month {
+    font-size: var(--size-xs);
+  }
+}
+
+/* lg: laptop — center line, alternating cards */
+@media (min-width: 1024px) {
+  .events {
+    --marker: 4.5rem;
+    --gap: 2.5rem;
+    margin-top: 16rem;
+  }
+
+  .timeline::before {
+    left: calc(50% - 1.5px);
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr var(--marker) 1fr;
+  }
+
+  .timeline-marker {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .timeline-item--left .timeline-card {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .timeline-item--left .timeline-meta {
+    align-items: flex-end;
+  }
+
+  .timeline-item--left .timeline-card::after {
+    right: auto;
+    left: 100%;
+  }
+
+  .timeline-item--right .timeline-card {
+    grid-column: 3;
+  }
+
+  .timeline-year {
+    margin: 0 auto;
+  }
+
+  .timeline-day {
+    font-size: var(--size-2xl);
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .events {
+    margin-top: 25rem;
+  }
+}

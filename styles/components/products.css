@@ -1,0 +1,42 @@
+/*
+  Produkte: placeholder for now, just the heading and a "coming soon" note.
+*/
+
+.products {
+  margin-top: clamp(6rem, 10vw, 10rem);
+}
+
+/* Heading (same as the events and flyer headings) */
+.products-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.products-title {
+  font-size: clamp(var(--size-3xl), 2.2rem + 1.5vw, var(--size-5xl));
+  line-height: 1.1;
+  color: var(--clr-soft);
+}
+
+.products-divider {
+  width: 4rem;
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+  border: none;
+  border-top: 3px solid var(--clr-vivid);
+  border-radius: 3px;
+}
+
+/* same box as the events / flyer status messages */
+.products-soon {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: clamp(var(--size-base), 0.95rem + 0.3vw, var(--size-lg));
+  color: var(--clr-light);
+  border: 1px dashed rgba(251, 191, 36, 0.35);
+  border-radius: 15px;
+}

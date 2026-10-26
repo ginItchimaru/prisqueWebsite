@@ -1,0 +1,158 @@
+/*
+  Flyer: image grid rendered by src/utils/flyer.js, newest first.
+  Two flyers per row on every screen size;
+  a click opens the flyer full size in a <dialog>.
+*/
+
+.flyer {
+  margin-top: clamp(6rem, 10vw, 10rem);
+}
+
+/* Heading (same as the events heading) */
+.flyer-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.flyer-title {
+  font-size: clamp(var(--size-3xl), 2.2rem + 1.5vw, var(--size-5xl));
+  line-height: 1.1;
+  color: var(--clr-soft);
+}
+
+.flyer-divider {
+  width: 4rem;
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+  border: none;
+  border-top: 3px solid var(--clr-vivid);
+  border-radius: 3px;
+}
+
+/* Empty / loading / error message */
+.flyer-status {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: clamp(var(--size-base), 0.95rem + 0.3vw, var(--size-lg));
+  color: var(--clr-light);
+  border: 1px dashed rgba(251, 191, 36, 0.35);
+  border-radius: 15px;
+}
+
+/* Grid */
+.flyer-grid {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.flyer-grid:empty {
+  display: none;
+}
+
+.flyer-open {
+  display: block;
+  width: 100%;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border-radius: 15px;
+  background-color: rgba(154, 52, 18, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flyer-open:hover,
+.flyer-open:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--clr-vivid);
+  box-shadow: 0 0 25px rgba(190, 24, 93, 0.2);
+}
+
+/* A-format portrait frame; contain so no part of a flyer is cut off */
+.flyer-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.414;
+  object-fit: contain;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.is-loaded .flyer-img {
+  opacity: 1;
+}
+
+/* Full-size view */
+.flyer-dialog {
+  max-width: min(92vw, 60rem);
+  max-height: 92vh;
+  /* the global reset removes the margin that centers a modal <dialog> */
+  margin: auto;
+  padding: 0;
+  border: 3px solid var(--clr-soft);
+  border-radius: 15px;
+  background-color: var(--clr-dark);
+  overflow: visible;
+}
+
+.flyer-dialog::backdrop {
+  background-color: rgba(12, 10, 9, 0.85);
+}
+
+.flyer-dialog-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 6px);
+  border-radius: 12px;
+}
+
+.flyer-dialog-close {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--clr-vivid);
+  background-color: var(--clr-dark);
+  color: var(--clr-soft);
+  cursor: pointer;
+}
+
+.flyer-dialog-close:hover,
+.flyer-dialog-close:focus-visible {
+  background-color: var(--clr-vivid);
+  color: var(--clr-dark);
+}
+
+.flyer-dialog-close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* on phones the corner sits at the screen edge, so keep the button inside */
+@media (max-width: 639px) {
+  .flyer-dialog-close {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flyer-open,
+  .flyer-img {
+    transition: none;
+  }
+}

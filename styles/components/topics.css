@@ -1,218 +1,181 @@
+/*
+  Topics: two alternating feature blocks (image + long-form text).
+  Fluid sizes via clamp() so mobile -> tablet -> laptop -> desktop
+  scales continuously; the layout switches to two columns at lg.
+*/
+
 .topics {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 4.5rem);
+  margin-top: 12rem;
 }
 
 .topic {
-  border-radius: 9px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(1.25rem, 3vw, 3rem);
+  border-radius: 15px;
+  background-color: rgba(154, 52, 18, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.18);
 }
 
-.bluetenzart {
-  background-color: rgb(217, 119, 6, 0.8);
+/* soft accent glow in the corner, flips with the layout */
+.topic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 0% 0%,
+    rgba(190, 24, 93, 0.12),
+    transparent 55%
+  );
 }
 
-.bluetenzart .topic-content {
-
+.topic--reverse::before {
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(190, 24, 93, 0.12),
+    transparent 55%
+  );
 }
 
-.heilsphaere {
-  background-color: rgb(154, 52, 18, 0.8);
-}
-
-.wertvollessen {
-  background-color: rgb(217, 119, 6, 0.8);
-}
-
-.topic-img-wrapper {
-
+/* Image */
+.topic-media {
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .topic-img {
   width: 100%;
-  border-radius: 9px;
-  box-shadow: 0px 0px 25px var(--clr-light-shadow);
-  border: 8px solid var(--clr-dark);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid var(--clr-soft);
+  box-shadow: 0 0 25px var(--clr-light-shadow);
+}
+
+/* Text */
+.topic-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topic-index {
+  font-size: var(--size-sm);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--clr-vivid);
   opacity: 0.8;
 }
 
-.topic-content {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  /* justify-content: center; */
+.topic-title {
+  font-size: clamp(var(--size-3xl), 2.2rem + 1.5vw, var(--size-5xl));
+  line-height: 1.1;
+  color: var(--clr-soft);
+  margin-top: 0.25rem;
 }
 
-.topic-title {
-  color: var(--clr-light);
+.topic-divider {
+  width: 4rem;
+  margin: clamp(1rem, 2vw, 1.5rem) 0;
+  border: none;
+  border-top: 3px solid var(--clr-vivid);
+  border-radius: 3px;
+}
+
+.topic-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+  max-width: 65ch;
 }
 
 .topic-description {
+  font-size: clamp(var(--size-base), 0.95rem + 0.3vw, var(--size-xl));
+  line-height: 1.7;
   color: var(--clr-light);
-  max-width: 60ch;
 }
 
+/* sub headings inside the text, e.g. "wertVoll Essen" under heilSphaere */
+.topic-subtitle {
+  margin-top: 0.6em;
+  font-size: clamp(var(--size-xl), 1.1rem + 0.8vw, var(--size-3xl));
+  line-height: 1.2;
+  color: var(--clr-soft);
+}
 
-/* xs */
-@media (max-width: 639px) {
-  .topics {
-    margin-top: 12rem;
+/* amber is too faint on the light background */
+.light-mode .topic-subtitle {
+  color: var(--clr-deep);
+}
+
+/* md: tablet — wider landscape image, text gets more breathing room */
+@media (min-width: 768px) {
+  .topic-img {
+    aspect-ratio: 16 / 9;
   }
-
-  .topic {
-    margin: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .topic-content {
-    order: 2; /* Content will be at the top */
-    margin: 1rem;
-  }
-
-  .topic-img-wrapper {
-    padding: 1rem;
-    order: 1; /* Image will be at the bottom */
-  }
-
-  .topic-title {
-    font-size: var(--size-2xl);
-    margin-bottom: 1rem;
-  }
-
-  .topic-description {
-    font-size: var(--size-sm);
+  .topic-text {
+    max-width: 80ch;
   }
 }
 
-/* sm */
-@media (min-width: 640px) {
-
-  .topic {
-    margin: 3rem 1.5rem;
-    position: relative;
-  }
-
-  .topic-content {
-    position: absolute;
-    z-index: 1;
-    padding: 2rem;
-    gap: 1rem;
-    top: 50%;
-    left: 50%;
-  }
-
-  .topic-img-wrapper {
-    padding: 1rem;
-  }
-
-  .topic-title {
-    color: var(--clr-dark);
-    font-size: var(--size-3xl);
-  }
-
-  .topic-description {
-    color: var(--clr-dark);
-    font-size: var(--size-sm);
-  }
-}
-
-@media (min-width: 640px) and (max-width: 1023px) {
-  .topic-content {
-    align-items: center;
-    justify-content: center;
-    transform: translate(-50%, -50%);
-    width: 100%;
-  }
-}
-
-/* md */
-/* @media (min-width: 768px) {} */
-
-/* lg */
+/* lg: laptop — two columns, alternating sides */
 @media (min-width: 1024px) {
   .topics {
     margin-top: 16rem;
   }
 
   .topic {
-    margin: 4rem 2rem;
-    position: relative;
+    grid-template-columns: 5fr 6fr;
+    align-items: start;
   }
 
-  .topic-content {
-    position: absolute;
-    padding: 2rem;
-    gap: 2rem;
-    top: 0;
-    left: 0;
+  .topic--reverse {
+    grid-template-columns: 6fr 5fr;
   }
 
-  .topic-title {
-    font-size: var(--size-3xl);
+  .topic--reverse .topic-media {
+    order: 2;
   }
 
-  .topic-description {
-    font-size: var(--size-base);
+  /* image stays in view while long text scrolls past */
+  .topic-media {
+    position: sticky;
+    top: 2rem;
+  }
+
+  /* screen height minus the 2rem sticky margin top and bottom, so image and
+     text stay side by side while scrolling; cover zooms/crops the photo */
+  .topic-img {
+    aspect-ratio: auto;
+    height: calc(100vh - 4rem);
+    height: calc(100dvh - 4rem);
+    object-position: center;
   }
 }
 
-/* xl */
+/* xl: desktop */
 @media (min-width: 1280px) {
   .topics {
     margin-top: 25rem;
   }
-
-  .topic {
-    display: flex;
-    padding: 2rem 0;
-    margin: 0 2rem 4rem;
-  }
-
-  .bluetenzart {
-    justify-content: flex-end;
-  }
-
-  .heilsphaere {
-    justify-content: flex-start;
-  }
-
-  .wertvollessen {
-    justify-content: flex-end;
-  }
-
-  .topic-content {
-    position: relative;
-    gap: 2.5rem;
-    z-index: 0;
-  }
-
-  .bluetenzart .topic-img-wrapper {
-    margin-right: 2rem;
-  }
-
-  .heilsphaere .topic-img-wrapper {
-    margin-left: 2rem;
-  }
-
-  .wertvollessen .topic-img-wrapper {
-    margin-right: 2rem;
-  }
-
-  .topic-img {
-    width: 75rem;
-  }
-
-  .topic-title {
-    font-size: var(--size-4xl);
-    color: var(--clr-light);
-  }
-
-  .topic-description {
-    font-size: var(--size-lg);
-    color: var(--clr-light);
-    padding: 0 2rem;
-  }
 }
 
-/* 2xl */
-/* @media (min-width: 1536px) {} */
+@media (min-width: 1536px) {
+  .topic {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .topic--reverse {
+    grid-template-columns: 1fr 1fr;
+  }
+}

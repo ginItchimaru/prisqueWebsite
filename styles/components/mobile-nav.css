@@ -23,7 +23,7 @@
 }
 
 .mobile-nav-link {
-  font-size: var(--size-sm);
+  font-size: var(--size-base);
   text-decoration: none;
   font-weight: 600;
   color: var(--clr-deep);

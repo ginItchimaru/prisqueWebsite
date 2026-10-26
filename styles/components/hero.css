@@ -36,9 +36,10 @@
 
 /* Text styling */
 .hero-subtitle {
-  color: var(--clr-base);
+  color: var(--clr-vivid);
   font-size: var(--size-base);
   /* line-height: 0.8; */
+  opacity: 0.8;
 }
 
 .hero-title {
@@ -203,11 +204,11 @@
 @media (min-width: 1280px) {
   .hero {
     gap: 4rem;
-    margin-top: 12rem;
+    margin-top: 10rem;
   }
   
   .hero-subtitle {
-    font-size: var(--size-3xl);
+    font-size: var(--size-2xl);
   }
   
   .hero-description {
