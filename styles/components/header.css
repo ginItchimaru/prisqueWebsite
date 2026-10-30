@@ -115,7 +115,7 @@
 /* lg */
 @media (min-width: 1024px) {
   .header-link {
-    font-size: var(--size-sm);
+    font-size: var(--size-base);
   }
 
   .header-sun {
