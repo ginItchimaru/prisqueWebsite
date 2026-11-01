@@ -118,6 +118,13 @@
   color: var(--clr-deep);
 }
 
+/* link button under a text block (e.g. Ho'oponopono "Details");
+   align-self keeps it from stretching across the flex column */
+.topic-btn {
+  align-self: flex-start;
+  font-size: clamp(var(--size-sm), 0.85rem + 0.3vw, var(--size-lg));
+}
+
 /* md: tablet — wider landscape image, text gets more breathing room */
 @media (min-width: 768px) {
   .topic-img {
