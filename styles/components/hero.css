@@ -32,6 +32,9 @@
   border-radius: 15px;
   width: 20rem;
   height: 20rem;
+  /* fill the square frame by cropping instead of stretching, whatever the photo's format */
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Text styling */
